@@ -84,6 +84,9 @@ class SignOnLineCmd(dexml.Model):
     parametros = fields.List(Parameter)
     documentos = fields.List(Documento)
 
+class Person(dexml.Model):
+    name = fields.String()
+    age = fields.Integer(tagname='age')
 
 
 # from suds.client import Client

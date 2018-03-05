@@ -2,7 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import api, exceptions, fields, models, _
-from .account_invoice_fe import Documento, Item, SignOnLineCmd, Parameter
+from .account_invoice_fe import Documento, Item, SignOnLineCmd, Parameter, Person
 from suds.client import Client
 from suds.transport.http import HttpAuthenticated
 
@@ -28,12 +28,15 @@ class AccountControl(models.Model):
         _logger.info('Ejecutando job')
         account_control_list = self.env['account.invoice.control'].search([('state', '=', 'pendiente')], order='id ASC')
 
+
         if account_control_list:
             for child in account_control_list:
                 _logger.info('Ejecutando llamanda  del id ' + str(child.id))
                 for invoiceEntity in self.env['account.invoice'].search([('id', '=', child.invoice_id)]):
                     xml = self.build(invoiceEntity)
                     self.send(xml)
+                    p = Person(name="Handsome B. Wonderful", age=36)
+                    _logger.info('ejemplo xml = ' + p.render())
 
                 child._write({'state': 'declarado'})
 

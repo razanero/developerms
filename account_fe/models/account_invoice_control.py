@@ -36,7 +36,7 @@ class AccountControl(models.Model):
                     xml = self.build(invoiceEntity)
                     self.send(xml)
                     p = Person(name="Handsome B. Wonderful", age=36)
-                    _logger.info('ejemplo xml = ' + p.render())
+                    _logger.info('ejemplo xml = '  + p.render())
 
 
                 child._write({'state': 'declarado'})

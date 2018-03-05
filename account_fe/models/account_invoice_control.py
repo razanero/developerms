@@ -38,6 +38,7 @@ class AccountControl(models.Model):
                     p = Person(name="Handsome B. Wonderful", age=36)
                     _logger.info('ejemplo xml = ' + p.render())
 
+
                 child._write({'state': 'declarado'})
 
         return account_control_list
